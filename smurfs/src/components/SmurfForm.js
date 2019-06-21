@@ -39,7 +39,9 @@ return(
         type="height" />
 
 <div>
-<button onClick={onAddSmurf}>Add Smurf</button>
+<button onClick={(e)=>{
+    onAddSmurf(e)
+    props.history.push('/')}}>Add Smurf</button>
 </div>
     </form>
 )
