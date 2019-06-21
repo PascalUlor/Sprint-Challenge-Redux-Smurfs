@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 import { fetchSmurf } from '../actions';
-import Smurf from './Smurf';
+import SmurfContainer from '../components/SmurfContainer';
 import SmurfForm from './SmurfForm';
 import Nav from './Nav';
 /*
@@ -41,14 +41,15 @@ const App = (props)=> {
       <MainContainer>
         <Nav />
         <div>Have fun!</div>
-        {smurflist.map(smurf=>{
-    return (
-      <Smurf smurf={smurf} key={smurf.id}/>
-      )
-  })}
-  <Route
+     
+      <Route
+          exact
+          path="/"
+          render={props => <SmurfContainer {...props} smurflist={smurflist}/>}
+        />
+      <Route
           path="/smurf-form"
-          render={props => <SmurfForm {...props} />}
+          render={props => <SmurfForm {...props}  />}
         />
       </MainContainer>
     );
