@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { fetchSmurf } from '../actions';
 import Smurf from './Smurf';
 import SmurfForm from './SmurfForm';
+import Nav from './Nav';
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -37,9 +38,7 @@ const App = (props)=> {
     }
     return (
       <MainContainer>
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your Redux version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
+        <Nav />
         <div>Have fun!</div>
         {smurflist.map(smurf=>{
     return (
