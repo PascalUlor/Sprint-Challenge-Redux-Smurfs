@@ -15,7 +15,6 @@ const App = (props)=> {
   useEffect(()=>{
     fetchSmurf()
   },[]);
-    console.log('++++++',props.smurflist)
 
     if (fetching) {
       return (<div>

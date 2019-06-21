@@ -98,3 +98,14 @@ export const fetchSmurf = () => dispatch => {
         dispatch(failure(err.message));
       })
   }
+
+  export const deleteData = (id) => dispatch =>{
+      axios.delete(`${baseUrl}/smurfs/${id}`)
+      .then(res=>{
+        dispatch(deleteSmurf(res.data.id))
+        dispatch(fetchSmurf())
+        console.log("-----Working", res.data);
+      }).catch(err =>{
+        dispatch(failure(err.message));
+      })
+  }

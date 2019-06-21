@@ -5,7 +5,6 @@ import { addData } from '../actions';
 
 
 export const SmurfForm =(props)=>{
-console.log('-------', props)
 const { addData } = props;
   const name = createRef()
   const age = createRef()
