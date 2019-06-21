@@ -1,22 +1,70 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
+import Loader from "react-loader-spinner";
+import styled from 'styled-components';
+import { fetchSmurf } from '../actions';
+import SmurfContainer from '../components/SmurfContainer';
+import SmurfForm from './SmurfForm';
+import Nav from './Nav';
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
  Just remember, `how do I `connect` my components to redux?`
  `How do I ensure that my component links the state to props?`
  */
-class App extends Component {
-  render() {
+
+const MainContainer = styled.div`
+background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent),
+  url(https://wallpapersite.com/images/pages/pic_h/2350.jpg) center/cover
+    no-repeat border-box,
+  skyblue;
+width: 100vw;
+min-height: 100vh;
+position: relative;
+text-align: center;
+`;
+
+
+const App = (props)=> {
+  const { fetchSmurf, fetching, smurflist } = props;
+  useEffect(()=>{
+    fetchSmurf()
+  },[]);
+
+    if (fetching) {
+      return (<div>
+  <Loader type="Circles" color="green" height="100" width="100" />
+      </div>);
+    }
     return (
-      <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your Redux version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
+      <MainContainer>
+        <Nav />
         <div>Have fun!</div>
-      </div>
+     
+      <Route
+          exact
+          path="/"
+          render={props => <SmurfContainer {...props} smurflist={smurflist}/>}
+        />
+      <Route
+          path="/smurf-form"
+          render={props => <SmurfForm {...props}  />}
+        />
+      </MainContainer>
     );
+}
+
+// export default App;
+
+const mapStateToProps =(state) =>{
+  return {
+    smurflist: state.smurfs,
+    fetching: state.fetching
   }
 }
 
-export default App;
+export default connect(
+  mapStateToProps, {fetchSmurf}
+)(App);
+
