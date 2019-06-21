@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import Loader from "react-loader-spinner";
 import styled from 'styled-components';
 import { fetchSmurf } from '../actions';
@@ -45,7 +46,10 @@ const App = (props)=> {
       <Smurf smurf={smurf} key={smurf.id}/>
       )
   })}
-  <SmurfForm />
+  <Route
+          path="/smurf-form"
+          render={props => <SmurfForm {...props} />}
+        />
       </MainContainer>
     );
 }
