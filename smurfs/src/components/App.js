@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Loader from "react-loader-spinner";
+import styled from 'styled-components';
 import { fetchSmurf } from '../actions';
 import Smurf from './Smurf';
 import SmurfForm from './SmurfForm';
@@ -10,6 +11,19 @@ import SmurfForm from './SmurfForm';
  Just remember, `how do I `connect` my components to redux?`
  `How do I ensure that my component links the state to props?`
  */
+
+const MainContainer = styled.div`
+background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent),
+  url(https://wallpapersite.com/images/pages/pic_h/2350.jpg) center/cover
+    no-repeat border-box,
+  skyblue;
+width: 100vw;
+min-height: 100vh;
+position: relative;
+text-align: center;
+`;
+
+
 const App = (props)=> {
   const { fetchSmurf, fetching, smurflist } = props;
   useEffect(()=>{
@@ -22,7 +36,7 @@ const App = (props)=> {
       </div>);
     }
     return (
-      <div className="App">
+      <MainContainer>
         <h1>SMURFS! 2.0 W/ Redux</h1>
         <div>Welcome to your Redux version of Smurfs!</div>
         <div>Start inside of your `src/index.js` file!</div>
@@ -33,7 +47,7 @@ const App = (props)=> {
       )
   })}
   <SmurfForm />
-      </div>
+      </MainContainer>
     );
 }
 

@@ -44,8 +44,8 @@ const SmurfList = (state = initialState, action) => {
       return {
         state
       }
-    case types.DELETE_SMURF:
-        return state.filter(smurf=> smurf.id !== action.payload)
+    // case types.DELETE_SMURF:
+    //     return state.filter(smurf=> smurf.id !== action.payload)
     default:
         return state
   }
