@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { Route } from "react-router-dom";
 import Loader from "react-loader-spinner";
-import styled from 'styled-components';
-import { fetchSmurf } from '../actions';
-import SmurfContainer from '../components/SmurfContainer';
-import SmurfForm from './SmurfForm';
-import Nav from './Nav';
+import styled from "styled-components";
+import { fetchSmurf } from "../actions";
+import SmurfContainer from "../components/SmurfContainer";
+import SmurfForm from "./SmurfForm";
+import Nav from "./Nav";
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -15,56 +15,59 @@ import Nav from './Nav';
  */
 
 const MainContainer = styled.div`
-background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent),
-  url(https://wallpapersite.com/images/pages/pic_h/2350.jpg) center/cover
-    no-repeat border-box,
-  skyblue;
-width: 100vw;
-min-height: 100vh;
-position: relative;
-text-align: center;
+  background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent),
+    url(https://wallpapersite.com/images/pages/pic_h/2350.jpg) center/cover
+      no-repeat border-box,
+    skyblue;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  text-align: center;
 `;
 
-
-const App = (props)=> {
+const App = props => {
   const { fetchSmurf, fetching, smurflist } = props;
-  useEffect(()=>{
-    fetchSmurf()
-  },[]);
+  useEffect(() => {
+    fetchSmurf();
+  }, []);
 
-    if (fetching) {
-      return (<div>
-  <Loader type="Circles" color="green" height="100" width="100" />
-      </div>);
-    }
+  if (fetching) {
     return (
-      <MainContainer>
-        <Nav />
-        <div>Have fun!</div>
-     
-      <Route
-          exact
-          path="/"
-          render={props => <SmurfContainer {...props} smurflist={smurflist}/>}
-        />
-      <Route
-          path="/smurf-form"
-          render={props => <SmurfForm {...props}  />}
-        />
-      </MainContainer>
+      <div>
+        <Loader type="Circles" color="green" height="100" width="100" />
+      </div>
     );
-}
+  }
+  return (
+    <MainContainer>
+      <Nav />
+      <div>Have fun!</div>
+
+      <Route
+        exact
+        path="/"
+        render={props => <SmurfContainer {...props} smurflist={smurflist} />}
+      />
+      <Route path="/smurf-form" render={props => <SmurfForm {...props} />} />
+
+      <Route
+        path="/update-smurf/:id"
+        render={props => <SmurfForm {...props} />}
+      />
+    </MainContainer>
+  );
+};
 
 // export default App;
 
-const mapStateToProps =(state) =>{
+const mapStateToProps = state => {
   return {
     smurflist: state.smurfs,
     fetching: state.fetching
-  }
-}
+  };
+};
 
 export default connect(
-  mapStateToProps, {fetchSmurf}
+  mapStateToProps,
+  { fetchSmurf }
 )(App);
-

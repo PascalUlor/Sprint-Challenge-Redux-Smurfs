@@ -40,11 +40,11 @@ const SmurfList = (state = initialState, action) => {
         return {
             ...state, error: action.payload
         }
-    case types.UPDATE_SMURF:
-      return {
-        state
-      }
-    // case types.DELETE_SMURF:
+    // case types.UPDATE_SMURF:
+    //   return {
+    //     state
+    //   }
+    // // case types.DELETE_SMURF:
     //     return state.filter(smurf=> smurf.id !== action.payload)
     default:
         return state

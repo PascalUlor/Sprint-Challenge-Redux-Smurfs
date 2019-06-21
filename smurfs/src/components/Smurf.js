@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { deleteData } from "../actions";
 
@@ -23,7 +24,6 @@ const Span = styled.div`
 `;
 
 export const Smurf = (props) => {
-  console.log("======", props);
   const { smurf, deleteData } = props;
   return (
     <div className="Smurf">
@@ -33,7 +33,9 @@ export const Smurf = (props) => {
         <p>{smurf.age} smurf years old</p>
         <Span>
           <span>
+          <Link to={`/update-smurf/${smurf.id}`}>
             <button>Edit</button>
+            </Link>
           </span>
           <span>
             <button onClick={() => deleteData(smurf.id)}>Delete</button>

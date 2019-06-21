@@ -8,8 +8,8 @@ export const SUCCESS = "SUCCESS";
 export const FETCHING = "FETCHING";
 export const FAILURE = "FAILURE";
 export const ADD_SMURF = "ADD_SMURF";
-export const DELETE_SMURF = "DELETE_SMURF";
-export const UPDATE_SMURF = "UPDATE";
+// export const DELETE_SMURF = "DELETE_SMURF";
+// export const UPDATE_SMURF = "UPDATE";
 
 /*
   For this project you'll need at least 2 action creators for the main portion,
@@ -52,12 +52,12 @@ export const failure = mssg => {
 //   };
 // };
 
-export const updateSMURF = id => {
-  return {
-    type: UPDATE_SMURF,
-    payload: id
-  };
-};
+// export const updateSMURF = id => {
+//   return {
+//     type: UPDATE_SMURF,
+//     payload: id
+//   };
+// };
 
 export const addSmurf = smurfs => {
   return {
@@ -104,3 +104,12 @@ export const deleteData = id => dispatch => {
       dispatch(failure(err.message));
     });
 };
+
+export const updateSmurf = (smurf) => dispatch =>{
+  axios.put(`${baseUrl}/smurfs/${smurf.id}`, smurf)
+  .then(res=> {
+    dispatch(addSmurf(res.data));
+  }).catch(err=> {
+    dispatch(failure(err.message));
+  })
+}
