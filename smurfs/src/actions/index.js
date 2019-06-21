@@ -93,6 +93,7 @@ export const fetchSmurf = () => dispatch => {
     .then(res=>{
         console.log('+++++++',res);
         dispatch(addSmurf(res.data))
+        dispatch(fetchSmurf())
     }).catch(err =>{
         dispatch(failure(err.message));
       })

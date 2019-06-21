@@ -30,7 +30,8 @@ const SmurfList = (state = initialState, action) => {
         fetching: action.payload
       }
     case types.ADD_SMURF:
-        return [...state, action.payload]
+        return {...state,
+          smurfs: action.payload}
     case types.SUCCESS:
         return {
             ...state, smurfs: action.payload

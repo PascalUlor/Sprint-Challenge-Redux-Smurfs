@@ -39,7 +39,7 @@ return(
         ref={height} 
         type="height" />
 
-<button onClick={onAddSmurf}>Add Quote</button>
+<button onClick={onAddSmurf}>Add Smurf</button>
     </form>
 )
 }
