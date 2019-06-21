@@ -1,3 +1,5 @@
+import * as types from '../actions';
+
 /*
   Be sure to import in all of the action types from `../actions`
 */
@@ -13,6 +15,41 @@
    error: null
  }
 */
+
+const initialState = {
+  smurfs: [],
+  fetching: false,
+  error: null
+}
+
+export const SmurfList = (state = initialState, action) => {
+  switch (action.type) {
+    case types.FETCHING:
+      return {
+        ...state,
+        fetching: action.payload
+      }
+    case types.ADD_SMURF:
+        return [...state, action.payload]
+    case types.SUCCESS:
+        return {
+            ...state, smurfs: action.payload
+        }
+    case types.FAILURE:
+        return {
+            ...state, error: action.payload
+        }
+    case types.UPDATE_SMURF:
+      return {
+        state
+      }
+    case types.DELETE_SMURF:
+        return state.filter(smurf=> smurf.id !== action.payload)
+    default:
+        return state
+  }
+};
+
 
 /*
   You'll only need one smurf reducer for this project.
