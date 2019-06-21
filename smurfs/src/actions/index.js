@@ -23,7 +23,7 @@ export const UPDATE_SMURF = 'UPDATE';
    D - deleteSmurf
 */
 
-const baseUrl = "http://localhost:3333/smurfs";
+const baseUrl = "http://localhost:3333";
 
 export const fetching = status => {
     return {
@@ -76,8 +76,9 @@ export const addSmurf = (name, height, age) => {
 export const fetchSmurf = () => dispatch => {
     dispatch(fetching(true));
     axios
-      .get(`${baseUrl}/smurfs`)
+      .get('http://localhost:3333/smurfs')
       .then(res => {
+        console.log(res)
         dispatch(success(res.data));
         dispatch(fetching(false));
       })

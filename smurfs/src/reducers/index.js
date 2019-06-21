@@ -22,7 +22,7 @@ const initialState = {
   error: null
 }
 
-export const SmurfList = (state = initialState, action) => {
+const SmurfList = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCHING:
       return {
@@ -49,6 +49,8 @@ export const SmurfList = (state = initialState, action) => {
         return state
   }
 };
+
+export default SmurfList
 
 
 /*
