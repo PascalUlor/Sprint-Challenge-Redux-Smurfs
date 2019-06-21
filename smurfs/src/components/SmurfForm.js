@@ -1,56 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import styled from "styled-components";
-// import Loader from "react-loader-spinner";
 import { addData, updateSmurf } from '../actions';
-
-
-// export const SmurfForm =(props)=>{
-// const { addData } = props;
-//   const name = createRef()
-//   const age = createRef()
-//   const height = createRef()
-
-//   const onAddSmurf = (e) => {
-//       e.preventDefault()
-//     addData({
-//       name: name.current.value,
-//       age: age.current.value,
-//       height: height.current.value,
-//     });
-//     name.current.value = '';
-//     age.current.value = '';
-//     height.current.value = '';
-//   }
-
-// return(
-//     <div>
-//     <h1>Smurf List</h1>
-// <form onSubmit={()=> onAddSmurf}>
-//     <div>Name</div>
-//         <input 
-//         ref={name} 
-//         type="text"
-//         />
-//         <div>age</div>
-//         <input 
-//         ref={age} 
-//         type="text" />
-//         <div>Height</div>
-//         <input 
-//         ref={height} 
-//         type="height" />
-
-// <div>
-// <button onClick={(e)=>{
-//     onAddSmurf(e)
-//     props.history.push('/')}}>Add Smurf</button>
-// </div>
-//     </form>
-//     </div>
-    
-// )
-// }
 
 
 const Container = styled.div`
@@ -95,7 +46,6 @@ const FormInput = styled.input`
 
 
 const SmurfForm = props => {
-    console.log("======", props);
   const { addData, smurflist, updateSmurf} = props
   const id = Number(props.match.params.id);
   const [smurf, setSmurf] = useState({
@@ -126,7 +76,6 @@ const SmurfForm = props => {
       age: smurf.age !== ''? smurf.age: selectedSmurf.age,
       height: smurf.height !== '' ? smurf.height: selectedSmurf.height
     };
-    console.log('++++++++++',smurfDeets);
     updateSmurf(smurfDeets);
     props.history.push('/');
   };
