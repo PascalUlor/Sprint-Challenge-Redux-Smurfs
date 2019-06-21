@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Loader from "react-loader-spinner";
 import { fetchSmurf } from '../actions';
 import Smurf from './Smurf';
+import SmurfForm from './SmurfForm';
 /*
  to wire this component up you're going to need a few things.
  I'll let you do this part on your own. 
@@ -29,9 +30,10 @@ const App = (props)=> {
         <div>Have fun!</div>
         {smurflist.map(smurf=>{
     return (
-      <Smurf smurf={smurf}/>
+      <Smurf smurf={smurf} key={smurf.id}/>
       )
   })}
+  <SmurfForm />
       </div>
     );
 }

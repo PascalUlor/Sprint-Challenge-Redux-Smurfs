@@ -76,7 +76,7 @@ export const addSmurf = (name, height, age) => {
 export const fetchSmurf = () => dispatch => {
     dispatch(fetching(true));
     axios
-      .get('http://localhost:3333/smurfs')
+      .get(`${baseUrl}/smurfs`)
       .then(res => {
         console.log(res)
         dispatch(success(res.data));
